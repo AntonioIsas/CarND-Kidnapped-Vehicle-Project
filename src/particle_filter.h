@@ -9,6 +9,15 @@
 #ifndef PARTICLE_FILTER_H_
 #define PARTICLE_FILTER_H_
 
+#include <random>
+#include <algorithm>
+#include <iostream>
+#include <numeric>
+#include <math.h>
+#include <iostream>
+#include <sstream>
+#include <string>
+#include <iterator>
 #include "helper_functions.h"
 
 struct Particle {
@@ -26,11 +35,11 @@ struct Particle {
 
 
 class ParticleFilter {
+
+  std::default_random_engine gen;
 	
 	// Number of particles to draw
 	int num_particles; 
-	
-	
 	
 	// Flag, if filter is initialized
 	bool is_initialized;
@@ -101,7 +110,7 @@ public:
 	 * Set a particles list of associations, along with the associations calculated world x,y coordinates
 	 * This can be a very useful debugging tool to make sure transformations are correct and assocations correctly connected
 	 */
-	Particle SetAssociations(Particle particle, std::vector<int> associations, std::vector<double> sense_x, std::vector<double> sense_y);
+	void SetAssociations(Particle& particle, std::vector<int> associations, std::vector<double> sense_x, std::vector<double> sense_y);
 	
 	std::string getAssociations(Particle best);
 	std::string getSenseX(Particle best);
